@@ -1,34 +1,27 @@
 pipeline {
-    agent {
-        label "maven"
-    }
+    agent any
     tools {
-        maven "maven3.9.3"
+       maven 'maven399'
     }
     stages {
-        stage('Build') {
+        stage('Source') {
+            
             steps {
-                sh 'mvn clean compile'
-            }
+                script{
+                git branch: 'main', poll: false, url: 'https://github.com/spring-projects/spring-petclinic.git'
+            }}
         }
-        stage('Test') {
+        
+        stage('Package'){
             steps {
-
-                sh 'mvn test'
-            }
-        }
-        stage('Package') {
-            steps {
-
-                sh 'mvn package'
-            }
-        }
-        stage('Storing Artifact') {
-            steps {
-
-                archiveArtifacts artifacts: 'target/**/*.jar'
+                sh "mvn package"
             }
         }
         
+        stage('Test'){
+            steps {
+                sh "mvn test"
+            }
+        }
     }
 }
