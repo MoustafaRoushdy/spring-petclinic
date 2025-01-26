@@ -1,4 +1,4 @@
-pipeline {
+pipeline { // this is a nice feature
     agent any
     tools {
        maven 'maven399'
@@ -14,7 +14,7 @@ pipeline {
         
         stage('Package'){
         when {
-        branch "feature/*"
+                branch "feature/*"
             }
             steps {
                 sh "mvn package"
