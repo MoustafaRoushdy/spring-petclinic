@@ -3,9 +3,6 @@ pipeline {
     tools {
        maven 'maven399'
     }
-    when {
-        branch "feature/*"
-    }
     stages {
         stage('Source') {
             
@@ -16,6 +13,9 @@ pipeline {
         }
         
         stage('Package'){
+        when {
+        branch "feature/*"
+            }
             steps {
                 sh "mvn package"
             }
