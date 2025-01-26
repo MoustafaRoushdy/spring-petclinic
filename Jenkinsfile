@@ -3,6 +3,7 @@ pipeline { // this is a nice feature
     tools {
        maven 'maven399'
     }
+    parameters { string(name: 'maven_command', defaultValue: 'install', description: 'maven command to run in the first stage') }
     stages {
         // stage('Source') {
             
@@ -11,12 +12,18 @@ pipeline { // this is a nice feature
         //         git branch: 'main', poll: false, url: 'https://github.com/spring-projects/spring-petclinic.git'
         //     }}
         // }
+        stage('mvn command'){
+            steps {
+                sh "mvn ${params.q}"
+            }
+        }
         
         stage('Package'){
         when {
                 branch "feature/nicefeature"
             }
             steps {
+                
                 sh "mvn package"
             }
         }
