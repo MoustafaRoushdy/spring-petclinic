@@ -14,7 +14,7 @@ pipeline { // this is a nice feature
         // }
         stage('mvn command'){
             steps {
-                sh "mvn ${params.q}"
+                sh "mvn ${params.maven_command}"
             }
         }
         
