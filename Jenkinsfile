@@ -14,7 +14,7 @@ pipeline { // this is a nice feature
         
         stage('Package'){
         when {
-                branch "feature/*"
+                branch "feature/nicefeature"
             }
             steps {
                 sh "mvn package"
