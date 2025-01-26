@@ -4,13 +4,13 @@ pipeline { // this is a nice feature
        maven 'maven399'
     }
     stages {
-        stage('Source') {
+        // stage('Source') {
             
-            steps {
-                script{
-                git branch: 'main', poll: false, url: 'https://github.com/spring-projects/spring-petclinic.git'
-            }}
-        }
+        //     steps {
+        //         script{
+        //         git branch: 'main', poll: false, url: 'https://github.com/spring-projects/spring-petclinic.git'
+        //     }}
+        // }
         
         stage('Package'){
         when {
